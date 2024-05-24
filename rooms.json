@@ -1,0 +1,12 @@
+{
+  "rooms":
+  [
+    {"name": "Столярная мастерская", "light": true, "temperature": 17},
+    {"name": "Сборочная лента", "light": false, "temperature": 15},
+    {"name": "Литейная", "light": true, "temperature": 38},
+    {"name": "Комната отдыха", "light": true, "temperature": 22},
+    {"name": "Склад", "light": true, "temperature": 16},
+    {"name": "Туалет", "light": false, "temperature": 18},
+    {"name": "Офис", "light": false, "temperature": 20}
+  ]
+}

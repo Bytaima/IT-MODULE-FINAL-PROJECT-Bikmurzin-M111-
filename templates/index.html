@@ -1,0 +1,77 @@
+<!-- index.html -->
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информационная панель завода</title>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="content">
+        <h1>Информационная панель завода</h1>
+        <h2>Состояние производственных помещений:</h2>
+        <ul>
+        {% for room in house.rooms %}
+            <li>{{ room.name }}:
+                {% if room.light %}
+                    <span style="color: green;">Свет включен</span>
+                {% else %}
+                    <span style="color: red;">Свет выключен</span>
+                {% endif %}
+                Температура: {{ room.temperature }} °C
+            </li>
+        {% endfor %}
+        </ul>
+        <h2>Состояние сигнализации:</h2>
+        {% if security_system.alarm_on %}
+            <p style="color: green;">Сигнализация включена</p>
+        {% else %}
+            <p style="color: red;">Сигнализация выключена</p>
+        {% endif %}
+        <h2>Состояние пожарной сигнализации:</h2>
+        {% if fire_alarm.fire_detected %}
+            <p style="color: red;">Обнаружен пожар!</p>
+        {% else %}
+            <p style="color: green;">Все в порядке</p>
+        {% endif %}
+        <h2>Состояние дверей завода:</h2>
+        {% if house.door.is_closed %}
+            <p style="color: green;">Двери закрыты</p>
+        {% else %}
+            <p style="color: red;">Двери открыты</p>
+        {% endif %}
+
+        <h2>Анализ данных:</h2>
+        <h3>Средняя температура в комнатах:</h3>
+        <ul>
+            {% for room, avg_temp in analysis_results.average_temperatures.items() %}
+                <li>{{ room }}: {{ avg_temp }} °C</li>
+            {% endfor %}
+        </ul>
+        <h3>Максимальная температура в комнатах:</h3>
+        <ul>
+            {% for room, max_temp in analysis_results.max_temperatures.items() %}
+                <li>{{ room }}: {{ max_temp }} °C</li>
+            {% endfor %}
+        </ul>
+        <h3>Минимальная температура в комнатах:</h3>
+        <ul>
+            {% for room, min_temp in analysis_results.min_temperatures.items() %}
+                <li>{{ room }}: {{ min_temp }} °C</li>
+            {% endfor %}
+        </ul>
+        <h3>Время включения света в комнатах:</h3>
+        <ul>
+            {% for room, duration in analysis_results.light_durations.items() %}
+                <li>{{ room }}: {{ duration }} секунд</li>
+            {% endfor %}
+        </ul>
+        <p>Частота срабатывания сигнализации: {{ analysis_results.alarm_count }} раз</p>
+        <p>Частота обнаружения пожара: {{ analysis_results.fire_alarm_count }} раз</p>
+
+        <a href="/admin">Административная панель</a>
+    </div>
+</body>
+</html>
